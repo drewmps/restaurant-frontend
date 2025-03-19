@@ -1,3 +1,5 @@
+import Button from "../components/Button";
+
 function Login() {
   return (
     <>
@@ -55,12 +57,12 @@ function Login() {
                         required=""
                       />
                     </div>
-                    <button
+                    <Button
                       className="btn btn-lg btn-primary rounded-pill w-100 p-2"
                       type="submit"
                     >
                       Log In
-                    </button>
+                    </Button>
                   </form>
                 </div>
               </div>

@@ -1,3 +1,4 @@
+import Button from "../components/Button";
 import CardProduct from "../components/CardProduct";
 
 export default function Home() {
@@ -23,12 +24,12 @@ export default function Home() {
                     placeholder="Search"
                     aria-label="Search"
                   />
-                  <button
+                  <Button
                     className="btn btn-primary rounded-pill"
                     type="submit"
                   >
                     Search
-                  </button>
+                  </Button>
                 </form>
                 <div>
                   <div>Filter by categories</div>

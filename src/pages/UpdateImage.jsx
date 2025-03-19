@@ -1,3 +1,5 @@
+import Button from "../components/Button";
+
 export default function UpdateImage() {
   return (
     <>
@@ -21,12 +23,12 @@ export default function UpdateImage() {
                     required=""
                   />
                 </div>
-                <button
+                <Button
                   className="btn btn-lg btn-primary rounded-pill w-100 p-2 mt-3"
                   type="submit"
                 >
                   Update Image
-                </button>
+                </Button>
                 {/* </div> */}
               </form>
             </div>

@@ -1,3 +1,5 @@
+import Button from "../components/Button";
+
 function AddStaff() {
   return (
     <>
@@ -74,12 +76,12 @@ function AddStaff() {
                     defaultValue={""}
                   />
                 </div>
-                <button
+                <Button
                   className="btn btn-lg btn-primary rounded-pill w-100 p-2 mt-3"
                   type="submit"
                 >
                   Sign Up
-                </button>
+                </Button>
               </form>
             </div>
           </div>

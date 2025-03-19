@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 function FormProduct() {
   return (
     <>
@@ -89,18 +91,17 @@ function FormProduct() {
         </div>
         <div className="row mt-5 mb-3">
           <div className="col-6">
-            <a className="btn btn-lg btn-light rounded-pill w-100 p-2" href="">
+            <Button className="btn btn-lg btn-light rounded-pill w-100 p-2">
               Cancel
-            </a>
+            </Button>
           </div>
           <div className="col-6">
-            <button
+            <Button
               className="btn btn-lg btn-primary rounded-pill w-100 p-2"
               type="submit"
-              href=""
             >
               Submit
-            </button>
+            </Button>
           </div>
         </div>
       </form>
