@@ -41,7 +41,6 @@ export default function Home() {
     }
   }
   useEffect(() => {
-    console.log(cuisines.totalPage);
     fetchCuisines();
   }, [search, sort, selectedCategory, page]);
 
