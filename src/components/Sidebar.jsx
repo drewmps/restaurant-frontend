@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function Sidebar() {
   return (
     <>
@@ -9,28 +11,28 @@ export default function Sidebar() {
         <div className="position-sticky pt-5">
           <ul className="nav flex-column">
             <li className="nav-item">
-              <a className="nav-link" href="" id="nav-product">
+              <Link className="nav-link" id="nav-product" to="/admin/dashboard">
                 <span className="icon material-symbols-outlined me-2">
                   shopping_bag
                 </span>
                 Products
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="" id="nav-category">
+              <Link className="nav-link" id="nav-category">
                 <span className="icon material-symbols-outlined me-2">
                   category
                 </span>
                 Categories
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="" id="nav-category">
+              <Link className="nav-link" id="nav-category">
                 <span className="icon material-symbols-outlined me-2">
                   account_circle
                 </span>
                 Add User
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
