@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import Button from "../components/Button";
 import CardProduct from "../components/CardProduct";
-import { api } from "../helpers/api";
+import { getBaseURL } from "../helpers/api";
+import axios from "axios";
 
 export default function Home() {
   const [cuisines, setCuisines] = useState([]);
-
+  const [search, setSearch] = useState("");
   async function fetchCuisines() {
+    const url = new URL(getBaseURL() + "/apis/pub/restaurant-app/cuisines");
+    if (search) {
+      url.searchParams.append("q", search);
+    }
     try {
-      const response = await api.get(
-        "/apis/pub/restaurant-app/cuisines?page=6"
-      );
+      const response = await axios.get(url);
       setCuisines(response.data.data.query);
     } catch (error) {
       Swal.fire({
@@ -22,7 +24,7 @@ export default function Home() {
   }
   useEffect(() => {
     fetchCuisines();
-  }, []);
+  }, [search]);
   return (
     <>
       {/* Product Section Public */}
@@ -44,13 +46,11 @@ export default function Home() {
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
+                    value={search}
+                    onChange={(e) => {
+                      setSearch(e.target.value);
+                    }}
                   />
-                  <Button
-                    className="btn btn-primary rounded-pill"
-                    type="submit"
-                  >
-                    Search
-                  </Button>
                 </form>
                 <div>
                   <div>Filter by categories</div>
