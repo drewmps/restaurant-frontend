@@ -1,7 +1,28 @@
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import CardProduct from "../components/CardProduct";
+import { api } from "../helpers/api";
 
 export default function Home() {
+  const [cuisines, setCuisines] = useState([]);
+
+  async function fetchCuisines() {
+    try {
+      const response = await api.get(
+        "/apis/pub/restaurant-app/cuisines?page=6"
+      );
+      setCuisines(response.data.data.query);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
+  useEffect(() => {
+    fetchCuisines();
+  }, []);
   return (
     <>
       {/* Product Section Public */}
@@ -122,7 +143,15 @@ export default function Home() {
         {/* card product */}
         <div className="row mb-3">
           <div className="col-12 d-flex gap-2 flex-wrap row-gap-2">
-            <CardProduct />
+            {cuisines.map((cuisine) => {
+              return (
+                <CardProduct
+                  imgUrl={cuisine.imgUrl}
+                  name={cuisine.name}
+                  to={`/cuisines/${cuisine.id}`}
+                />
+              );
+            })}
           </div>
         </div>
         {/* card product */}

@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import DetailProduct from "./pages/DetailProduct";
 import PublicLayout from "./layouts/PublicLayout";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -8,7 +9,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PublicLayout />}>
-            <Route path="/cuisines/:id" element={<DetailProduct />} />
+            <Route index element={<Home />} />
+            <Route path="cuisines/:id" element={<DetailProduct />} />
           </Route>
         </Routes>
       </BrowserRouter>
