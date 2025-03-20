@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { api } from "../helpers/api";
 import { useEffect, useState } from "react";
+import { formatRupiah } from "../helpers/formatRupiah";
 
 function DetailProduct() {
   const { id } = useParams();
@@ -35,14 +36,25 @@ function DetailProduct() {
             <div>
               <img
                 src={`${cuisine ? cuisine.imgUrl : ""}`}
-                height="400px"
+                style={{ objectFit: "cover", height: "400px", width: "400px" }}
                 className="d-inline-block me-2"
                 alt=""
               />
             </div>
             <div>
-              <div>{cuisine ? `Deskripsi: ${cuisine.description}` : ""}</div>
-              <div>{cuisine ? `Harga: ${cuisine.price}` : ""}</div>
+              {cuisine && (
+                <>
+                  <div className="mb-4">
+                    <h4>Deskripsi</h4>
+                    <div>{cuisine ? `${cuisine.description}` : ""}</div>
+                  </div>
+
+                  <div>
+                    <h4>Harga</h4>
+                    <div>{cuisine ? `${formatRupiah(cuisine.price)}` : ""}</div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
