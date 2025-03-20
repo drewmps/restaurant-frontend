@@ -1,6 +1,31 @@
+import { useState } from "react";
 import Button from "../components/Button";
+import axios from "axios";
+import { getBaseURL } from "../helpers/api";
+import { useNavigate } from "react-router";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  async function handleLogin(e) {
+    e.preventDefault();
+    try {
+      const response = await axios.post(getBaseURL() + "/apis/login", {
+        email,
+        password,
+      });
+
+      localStorage.setItem("access_token", response.data.data.access_token);
+      navigate("/");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
   return (
     <>
       {/* Login Section */}
@@ -20,7 +45,7 @@ function Login() {
               </div>
               <div className="col-12 col-md-6 p-5 text-left">
                 <div className="form-signin m-auto">
-                  <form id="login-form">
+                  <form id="login-form" onSubmit={handleLogin}>
                     <h1 className="h3 mb-3 display-1">
                       Log in to your account
                     </h1>
@@ -39,6 +64,10 @@ function Login() {
                         placeholder="Enter email address ..."
                         autoComplete="off"
                         required=""
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                       />
                     </div>
                     <div className="mb-4">
@@ -55,6 +84,10 @@ function Login() {
                         placeholder="Enter your password ..."
                         autoComplete="off"
                         required=""
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                       />
                     </div>
                     <Button

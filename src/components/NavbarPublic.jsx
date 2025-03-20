@@ -1,11 +1,19 @@
+import { Link, useNavigate } from "react-router";
 import Navbar from "./Navbar";
 
-export default function NavbarPublic() {
+export default function NavbarPublic({ setIsLoggedIn }) {
+  const access_token = localStorage.getItem("access_token");
+  const navigate = useNavigate();
+  function handleLogout() {
+    localStorage.removeItem("access_token");
+    setIsLoggedIn(false);
+    navigate("/");
+  }
   return (
     <>
       {/* Navbar */}
       <Navbar>
-        <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6">
+        <Link to="/" className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6">
           <img
             src="./image/burgerLogo.jpg"
             height={50}
@@ -13,7 +21,7 @@ export default function NavbarPublic() {
             alt="BURGER"
           />
           Public Panel
-        </a>
+        </Link>
 
         <div>
           <button
@@ -28,10 +36,25 @@ export default function NavbarPublic() {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="px-5">
-            <a className="nav-link" href="" id="nav-logout">
-              <span className="icon material-symbols-outlined me-2">login</span>
-              Log in
-            </a>
+            {access_token ? (
+              <button
+                className="nav-link"
+                id="nav-logout"
+                onClick={handleLogout}
+              >
+                <span className="icon material-symbols-outlined me-2">
+                  logout
+                </span>
+                Log out
+              </button>
+            ) : (
+              <Link className="nav-link" id="nav-logout" to="/login">
+                <span className="icon material-symbols-outlined me-2">
+                  login
+                </span>
+                Log in
+              </Link>
+            )}
           </div>
         </div>
       </Navbar>
