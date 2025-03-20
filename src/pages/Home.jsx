@@ -7,8 +7,16 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sort, setSort] = useState("DESC");
+  const [page, setPage] = useState(1);
 
-  const [cuisines, setCuisines] = useState([]);
+  const [cuisines, setCuisines] = useState({
+    query: [],
+    pagination: {
+      currentPage: 1,
+      totalPage: 1,
+      totalRows: 1,
+    },
+  });
   const [categories, setCategories] = useState([]);
   async function fetchCuisines() {
     const url = new URL(getBaseURL() + "/apis/pub/restaurant-app/cuisines");
@@ -19,10 +27,11 @@ export default function Home() {
       url.searchParams.append("i", selectedCategory);
     }
     url.searchParams.append("sort", sort);
-    console.log(url.toString());
+    url.searchParams.append("page", page.toString());
+
     try {
       const response = await axios.get(url);
-      setCuisines(response.data.data.query);
+      setCuisines(response.data.data);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -32,8 +41,9 @@ export default function Home() {
     }
   }
   useEffect(() => {
+    console.log(cuisines.totalPage);
     fetchCuisines();
-  }, [search, sort, selectedCategory]);
+  }, [search, sort, selectedCategory, page]);
 
   async function fetchCategories() {
     const url = new URL(getBaseURL() + "/apis/pub/restaurant-app/categories");
@@ -113,7 +123,7 @@ export default function Home() {
         {/* card product */}
         <div className="row mb-3">
           <div className="col-12 d-flex gap-2 flex-wrap row-gap-2">
-            {cuisines.map((cuisine) => {
+            {cuisines.query?.map((cuisine) => {
               return (
                 <CardProduct
                   key={cuisine.id}
@@ -133,39 +143,47 @@ export default function Home() {
         >
           <ul className="pagination">
             <li className="page-item">
-              <a
+              <button
                 className="page-link"
-                href="#"
-                aria-label="Previous"
-                style={{ color: "#0058a3" }}
+                style={
+                  page === 1
+                    ? {
+                        color: "#666666",
+                        backgroundColor: "#cccccc",
+                        cursor: "not-allowed",
+                      }
+                    : { color: "#0058a3" }
+                }
+                disabled={page === 1 ? true : false}
+                onClick={() => {
+                  setPage(page - 1);
+                }}
               >
                 <span aria-hidden="true">«</span>
-              </a>
+              </button>
             </li>
+
             <li className="page-item">
-              <a className="page-link" style={{ color: "#0058a3" }} href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" style={{ color: "#0058a3" }} href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" style={{ color: "#0058a3" }} href="#">
-                3
-              </a>
-            </li>
-            <li className="page-item">
-              <a
+              <button
                 className="page-link"
-                style={{ color: "#0058a3" }}
-                href="#"
-                aria-label="Next"
+                style={
+                  page === cuisines.pagination?.totalPage
+                    ? {
+                        color: "#666666",
+                        backgroundColor: "#cccccc",
+                        cursor: "not-allowed",
+                      }
+                    : { color: "#0058a3" }
+                }
+                disabled={
+                  page === cuisines.pagination?.totalPage ? true : false
+                }
+                onClick={() => {
+                  setPage(page + 1);
+                }}
               >
                 <span aria-hidden="true">»</span>
-              </a>
+              </button>
             </li>
           </ul>
         </nav>
