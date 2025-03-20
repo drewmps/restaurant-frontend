@@ -1,14 +1,17 @@
 import { useParams } from "react-router";
-import { api } from "../helpers/api";
+import { getBaseURL } from "../helpers/api";
 import { useEffect, useState } from "react";
 import { formatRupiah } from "../helpers/formatRupiah";
+import axios from "axios";
 
 function DetailProduct() {
   const { id } = useParams();
   const [cuisine, setCuisine] = useState();
   async function fetchData() {
     try {
-      const response = await api.get(`/apis/pub/restaurant-app/cuisines/${id}`);
+      const response = await axios.get(
+        `${getBaseURL()}/apis/pub/restaurant-app/cuisines/${id}`
+      );
       setCuisine(response.data.data);
     } catch (error) {
       Swal.fire({
