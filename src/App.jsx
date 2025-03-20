@@ -4,6 +4,8 @@ import PublicLayout from "./layouts/PublicLayout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import LoginLayout from "./layouts/LoginLayout";
+import AdminLayout from "./layouts/AdminLayout";
+import Products from "./pages/Products";
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
           </Route>
           <Route path="/login" element={<LoginLayout />}>
             <Route index element={<Login />} />
+          </Route>
+          <Route path="/admin/dashboard" element={<AdminLayout />}>
+            <Route index element={<Products />} />
           </Route>
         </Routes>
       </BrowserRouter>
