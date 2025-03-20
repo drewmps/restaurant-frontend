@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function Home() {
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const [cuisines, setCuisines] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -12,6 +13,9 @@ export default function Home() {
     const url = new URL(getBaseURL() + "/apis/pub/restaurant-app/cuisines");
     if (search) {
       url.searchParams.append("q", search);
+    }
+    if (selectedCategory) {
+      url.searchParams.append("i", selectedCategory);
     }
     try {
       const response = await axios.get(url);
@@ -26,7 +30,7 @@ export default function Home() {
   }
   useEffect(() => {
     fetchCuisines();
-  }, [search]);
+  }, [search, selectedCategory]);
 
   async function fetchCategories() {
     const url = new URL(getBaseURL() + "/apis/pub/restaurant-app/categories");
@@ -73,11 +77,15 @@ export default function Home() {
               <select
                 className="form-select w-25"
                 aria-label="Default select example"
+                value={selectedCategory}
+                onChange={(e) => {
+                  setSelectedCategory(e.target.value);
+                }}
               >
                 <option selected="">Category</option>
                 {categories.map((category) => {
                   return (
-                    <option key={category.id} value={category.id}>
+                    <option key={category.id} value={category.name}>
                       {category.name}
                     </option>
                   );
