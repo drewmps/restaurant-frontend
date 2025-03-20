@@ -4,8 +4,10 @@ import { getBaseURL } from "../helpers/api";
 import axios from "axios";
 
 export default function Home() {
-  const [cuisines, setCuisines] = useState([]);
   const [search, setSearch] = useState("");
+
+  const [cuisines, setCuisines] = useState([]);
+  const [categories, setCategories] = useState([]);
   async function fetchCuisines() {
     const url = new URL(getBaseURL() + "/apis/pub/restaurant-app/cuisines");
     if (search) {
@@ -25,6 +27,23 @@ export default function Home() {
   useEffect(() => {
     fetchCuisines();
   }, [search]);
+
+  async function fetchCategories() {
+    const url = new URL(getBaseURL() + "/apis/pub/restaurant-app/categories");
+    try {
+      const response = await axios.get(url);
+      setCategories(response.data.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
+  useEffect(() => {
+    fetchCategories();
+  }, []);
   return (
     <>
       {/* Product Section Public */}
@@ -38,98 +57,34 @@ export default function Home() {
         {/* filter search sort */}
         <div className="row mb-5">
           <div className="col-12">
-            <div className="card mb-3" style={{ width: "18rem" }}>
-              <div className="card-body">
-                <form className="d-flex mb-3" role="search">
-                  <input
-                    className="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                    value={search}
-                    onChange={(e) => {
-                      setSearch(e.target.value);
-                    }}
-                  />
-                </form>
-                <div>
-                  <div>Filter by categories</div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="flexCheckDefault"
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      Category 1
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="flexCheckDefault"
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      Category 2
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="flexCheckDefault"
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      Category 3
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="flexCheckDefault"
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      Category 4
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="flexCheckDefault"
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      Category 5
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style={{ width: "18rem" }}>
+            <div className="d-flex gap-4">
+              <form className="d-flex w-25" role="search">
+                <input
+                  className="form-control"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                />
+              </form>
               <select
-                className="form-select"
+                className="form-select w-25"
+                aria-label="Default select example"
+              >
+                <option selected="">Category</option>
+                {categories.map((category) => {
+                  return (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  );
+                })}
+              </select>
+              <select
+                className="form-select w-25"
                 aria-label="Default select example"
               >
                 <option selected="">Sort</option>
@@ -146,6 +101,7 @@ export default function Home() {
             {cuisines.map((cuisine) => {
               return (
                 <CardProduct
+                  key={cuisine.id}
                   imgUrl={cuisine.imgUrl}
                   name={cuisine.name}
                   to={`/cuisines/${cuisine.id}`}
