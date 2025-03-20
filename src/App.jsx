@@ -1,48 +1,17 @@
-import Navbar from "./components/Navbar";
-import Preloader from "./components/Preloader";
-import Sidebar from "./components/Sidebar";
-import AddStaff from "./pages/AddStaff";
-import Categories from "./pages/Categories";
-import CreateProduct from "./pages/CreateProduct";
+import { BrowserRouter, Route, Routes } from "react-router";
 import DetailProduct from "./pages/DetailProduct";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Products from "./pages/Products";
-import UpdateImage from "./pages/UpdateImage";
-import UpdateProduct from "./pages/UpdateProduct";
+import PublicLayout from "./layouts/PublicLayout";
 
 function App() {
   return (
     <>
-      <Preloader />
-
-      <Navbar />
-
-      <Login />
-
-      {/* Home Section */}
-      <section className="container-fluid" id="home-section">
-        <div className="row">
-          <Sidebar />
-
-          <Home />
-
-          <DetailProduct />
-
-          <Products />
-
-          <CreateProduct />
-
-          <UpdateProduct />
-
-          <UpdateImage />
-
-          <Categories />
-
-          <AddStaff />
-        </div>
-      </section>
-      {/* End Home Section */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<PublicLayout />}>
+            <Route path="/cuisines/:id" element={<DetailProduct />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

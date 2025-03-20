@@ -1,4 +1,25 @@
+import { useParams } from "react-router";
+import { api } from "../helpers/api";
+import { useEffect, useState } from "react";
+
 function DetailProduct() {
+  const { id } = useParams();
+  const [cuisine, setCuisine] = useState();
+  async function fetchData() {
+    try {
+      const response = await api.get(`/apis/pub/restaurant-app/cuisines/${id}`);
+      setCuisine(response.data.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <>
       {/* Detail Section Public */}
@@ -7,23 +28,21 @@ function DetailProduct() {
         id="product-section"
       >
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 className="display-2">Detail Products Public</h1>
+          <h1 className="display-2">{cuisine ? cuisine.name : ""}</h1>
         </div>
         <div className="row mb-3">
           <div className="col-12 d-flex flex-column flex-md-row gap-2">
             <div>
               <img
-                src="./image/burgerLogo.jpg"
+                src={`${cuisine ? cuisine.imgUrl : ""}`}
                 height="400px"
                 className="d-inline-block me-2"
-                alt="BURGER"
+                alt=""
               />
             </div>
             <div>
-              <div>Ini buat detail page</div>
-              <div>Ini buat detail page</div>
-              <div>Ini buat detail page</div>
-              <div>Ini buat detail page</div>
+              <div>{cuisine ? `Deskripsi: ${cuisine.description}` : ""}</div>
+              <div>{cuisine ? `Harga: ${cuisine.price}` : ""}</div>
             </div>
           </div>
         </div>
