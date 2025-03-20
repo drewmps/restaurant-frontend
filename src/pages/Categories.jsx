@@ -1,4 +1,32 @@
+import { useEffect, useState } from "react";
+import { getBaseURL } from "../helpers/api";
+import axios from "axios";
+
 function Categories() {
+  const [categories, setCategories] = useState([]);
+  async function fetchCategories() {
+    try {
+      const response = await axios.get(
+        getBaseURL() + "/apis/restaurant-app/categories",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+
+      setCategories(response.data.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
+  useEffect(() => {
+    fetchCategories();
+  }, []);
   return (
     <>
       {/* Category Section */}
@@ -19,22 +47,14 @@ function Categories() {
                 </tr>
               </thead>
               <tbody id="table-category">
-                <tr>
-                  <td scope="row">#1</td>
-                  <td className="fw-bold">Furniture</td>
-                </tr>
-                <tr>
-                  <td scope="row">#2</td>
-                  <td className="fw-bold">Workspace</td>
-                </tr>
-                <tr>
-                  <td scope="row">#3</td>
-                  <td className="fw-bold">Storage</td>
-                </tr>
-                <tr>
-                  <td scope="row">#4</td>
-                  <td className="fw-bold">Textile</td>
-                </tr>
+                {categories.map((category, index) => {
+                  return (
+                    <tr key={category.id}>
+                      <td scope="row">#{index + 1}</td>
+                      <td className="fw-bold">{category.name}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
