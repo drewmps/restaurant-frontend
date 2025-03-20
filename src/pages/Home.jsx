@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [sort, setSort] = useState("DESC");
 
   const [cuisines, setCuisines] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -17,6 +18,8 @@ export default function Home() {
     if (selectedCategory) {
       url.searchParams.append("i", selectedCategory);
     }
+    url.searchParams.append("sort", sort);
+    console.log(url.toString());
     try {
       const response = await axios.get(url);
       setCuisines(response.data.data.query);
@@ -30,7 +33,7 @@ export default function Home() {
   }
   useEffect(() => {
     fetchCuisines();
-  }, [search, selectedCategory]);
+  }, [search, sort, selectedCategory]);
 
   async function fetchCategories() {
     const url = new URL(getBaseURL() + "/apis/pub/restaurant-app/categories");
@@ -82,7 +85,9 @@ export default function Home() {
                   setSelectedCategory(e.target.value);
                 }}
               >
-                <option selected="">Category</option>
+                <option selected="" value="">
+                  Category
+                </option>
                 {categories.map((category) => {
                   return (
                     <option key={category.id} value={category.name}>
@@ -94,10 +99,12 @@ export default function Home() {
               <select
                 className="form-select w-25"
                 aria-label="Default select example"
+                onChange={(e) => {
+                  setSort(e.target.value);
+                }}
               >
-                <option selected="">Sort</option>
-                <option value={1}>Newest</option>
-                <option value={2}>Oldest</option>
+                <option value="DESC">Newest</option>
+                <option value="ASC">Oldest</option>
               </select>
             </div>
           </div>
