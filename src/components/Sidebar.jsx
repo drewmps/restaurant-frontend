@@ -33,27 +33,6 @@ export default function Sidebar() {
               </a>
             </li>
           </ul>
-          <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-            <span>Account</span>
-          </h6>
-          <ul className="nav flex-column mb-2">
-            <li className="nav-item">
-              <a className="nav-link">
-                <span className="icon material-symbols-outlined me-2">
-                  person
-                </span>
-                Hej, <span id="username">Hacktiv8!</span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="" id="nav-logout">
-                <span className="icon material-symbols-outlined me-2">
-                  logout
-                </span>
-                Logout
-              </a>
-            </li>
-          </ul>
         </div>
       </nav>
       {/* End Sidebar */}
