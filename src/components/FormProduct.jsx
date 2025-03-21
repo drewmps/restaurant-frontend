@@ -76,7 +76,7 @@ function FormProduct({
               setSelectedCategory(e.target.value);
             }}
           >
-            <option value="" selected="" disabled="">
+            <option value="" disabled="">
               -- Select Category --
             </option>
             {categories.map((category) => {
