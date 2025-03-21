@@ -84,11 +84,14 @@ function Products() {
                               delete
                             </span>
                           </a>
-                          <a href="" className="ms-3">
+                          <Link
+                            to={`/admin/update/${cuisine.id}`}
+                            className="ms-3"
+                          >
                             <span className="icon material-symbols-outlined text-danger">
                               edit
                             </span>
-                          </a>
+                          </Link>
                           <a href="" className="ms-3">
                             <span className="icon material-symbols-outlined text-danger">
                               image

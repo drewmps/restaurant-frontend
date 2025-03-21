@@ -8,6 +8,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import Products from "./pages/Products";
 import Categories from "./pages/Categories";
 import CreateProduct from "./pages/CreateProduct";
+import UpdateProduct from "./pages/UpdateProduct";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="dashboard" element={<Products />} />
             <Route path="categories" element={<Categories />} />
             <Route path="create" element={<CreateProduct />} />
+            <Route path="update/:id" element={<UpdateProduct />} />
           </Route>
         </Routes>
       </BrowserRouter>

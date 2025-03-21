@@ -1,6 +1,78 @@
+import { useNavigate, useParams } from "react-router";
 import FormProduct from "../components/FormProduct";
+import axios from "axios";
+import { getBaseURL } from "../helpers/api";
+import { useEffect, useState } from "react";
 
 function UpdateProduct() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [stock, setStock] = useState("");
+  const [price, setPrice] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
+
+  async function fetchCuisine() {
+    try {
+      const { data } = await axios.get(
+        getBaseURL() + `/apis/restaurant-app/cuisines/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+      setName(data.data.name);
+      setSelectedCategory(data.data.categoryId);
+      setDescription(data.data.description);
+      setStock(data.data.stock ? data.data.stock : "");
+      setPrice(data.data.price);
+      setImgUrl(data.data.imgUrl);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
+  useEffect(() => {
+    fetchCuisine();
+  }, []);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const data = {
+      name,
+      description,
+      price: +price,
+      imgUrl,
+      stock: +stock,
+      categoryId: +selectedCategory,
+    };
+    try {
+      const response = await axios.put(
+        getBaseURL() + `/apis/restaurant-app/cuisines/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+      navigate("/admin/dashboard");
+    } catch (error) {
+      console.log("🚀 ~ handleSubmit edit product ~ error:", error);
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <>
       {/* New Product Section */}
@@ -13,7 +85,21 @@ function UpdateProduct() {
         </div>
         <div className="row">
           <div className="col-12 col-md-6">
-            <FormProduct />
+            <FormProduct
+              handleSubmit={handleSubmit}
+              name={name}
+              selectedCategory={selectedCategory}
+              description={description}
+              stock={stock}
+              price={price}
+              imgUrl={imgUrl}
+              setName={setName}
+              setSelectedCategory={setSelectedCategory}
+              setDescription={setDescription}
+              setStock={setStock}
+              setPrice={setPrice}
+              setImgUrl={setImgUrl}
+            />
           </div>
         </div>
       </section>
