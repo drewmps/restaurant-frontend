@@ -10,7 +10,6 @@ function UpdateProduct() {
   const [name, setName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [stock, setStock] = useState("");
   const [price, setPrice] = useState("");
   const [imgUrl, setImgUrl] = useState("");
 
@@ -27,7 +26,6 @@ function UpdateProduct() {
       setName(data.data.name);
       setSelectedCategory(data.data.categoryId);
       setDescription(data.data.description);
-      setStock(data.data.stock ? data.data.stock : "");
       setPrice(data.data.price);
       setImgUrl(data.data.imgUrl);
     } catch (error) {
@@ -49,7 +47,6 @@ function UpdateProduct() {
       description,
       price: +price,
       imgUrl,
-      stock: +stock,
       categoryId: +selectedCategory,
     };
     try {
@@ -90,13 +87,11 @@ function UpdateProduct() {
               name={name}
               selectedCategory={selectedCategory}
               description={description}
-              stock={stock}
               price={price}
               imgUrl={imgUrl}
               setName={setName}
               setSelectedCategory={setSelectedCategory}
               setDescription={setDescription}
-              setStock={setStock}
               setPrice={setPrice}
               setImgUrl={setImgUrl}
             />

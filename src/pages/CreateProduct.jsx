@@ -9,7 +9,6 @@ function CreateProduct() {
   const [name, setName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [stock, setStock] = useState("");
   const [price, setPrice] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   async function handleSubmit(e) {
@@ -19,7 +18,6 @@ function CreateProduct() {
       description,
       price: +price,
       imgUrl,
-      stock: +stock,
       categoryId: +selectedCategory,
     };
     try {
@@ -59,13 +57,11 @@ function CreateProduct() {
               name={name}
               selectedCategory={selectedCategory}
               description={description}
-              stock={stock}
               price={price}
               imgUrl={imgUrl}
               setName={setName}
               setSelectedCategory={setSelectedCategory}
               setDescription={setDescription}
-              setStock={setStock}
               setPrice={setPrice}
               setImgUrl={setImgUrl}
             />

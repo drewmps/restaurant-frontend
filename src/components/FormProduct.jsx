@@ -9,13 +9,11 @@ function FormProduct({
   name,
   selectedCategory,
   description,
-  stock,
   price,
   imgUrl,
   setName,
   setSelectedCategory,
   setDescription,
-  setStock,
   setPrice,
   setImgUrl,
 }) {
@@ -106,47 +104,23 @@ function FormProduct({
             }}
           />
         </div>
-        <div className="row">
-          <div className="col-12 col-md-6">
-            <div className="mb-3">
-              <label htmlFor="product-stock">
-                Stock <span className="text-danger fw-bold">*</span>
-              </label>
-              <input
-                type="number"
-                min={0}
-                className="form-control"
-                id="product-stock"
-                placeholder="Enter product stock"
-                autoComplete="off"
-                required=""
-                value={stock}
-                onChange={(e) => {
-                  setStock(e.target.value);
-                }}
-              />
-            </div>
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="mb-3">
-              <label htmlFor="product-price">
-                Price <span className="text-danger fw-bold">*</span>
-              </label>
-              <input
-                type="number"
-                min={0}
-                className="form-control"
-                id="product-price"
-                placeholder="Enter product price"
-                autoComplete="off"
-                required=""
-                value={price}
-                onChange={(e) => {
-                  setPrice(e.target.value);
-                }}
-              />
-            </div>
-          </div>
+        <div className="mb-3">
+          <label htmlFor="product-price">
+            Price <span className="text-danger fw-bold">*</span>
+          </label>
+          <input
+            type="number"
+            min={0}
+            className="form-control"
+            id="product-price"
+            placeholder="Enter product price"
+            autoComplete="off"
+            required=""
+            value={price}
+            onChange={(e) => {
+              setPrice(e.target.value);
+            }}
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="product-image">Image</label>

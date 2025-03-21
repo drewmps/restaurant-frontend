@@ -84,7 +84,6 @@ function Products() {
                   <th scope="col" width="250px">
                     Description
                   </th>
-                  <th scope="col">Stock</th>
                   <th scope="col">Price</th>
                   <th scope="col">Author</th>
                   <th scope="col" width="50px" />
@@ -100,13 +99,12 @@ function Products() {
                         <img src={cuisine.imgUrl} className="img-fluid" />
                       </td>
                       <td>{cuisine.description}</td>
-                      <td>{cuisine.stock}</td>
+
                       <td className="fw-bold">{formatRupiah(cuisine.price)}</td>
                       <td>{cuisine.User.username}</td>
                       <td>
                         <span className="d-flex">
                           <div
-                            href=""
                             className="ms-3"
                             style={{ cursor: "pointer" }}
                             onClick={() => {
@@ -125,7 +123,7 @@ function Products() {
                               edit
                             </span>
                           </Link>
-                          <a href="" className="ms-3">
+                          <a className="ms-3">
                             <span className="icon material-symbols-outlined text-danger">
                               image
                             </span>
