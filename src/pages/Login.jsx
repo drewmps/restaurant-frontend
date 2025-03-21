@@ -17,7 +17,7 @@ function Login() {
       });
 
       localStorage.setItem("access_token", response.data.data.access_token);
-      navigate("/");
+      navigate("/admin/dashboard");
     } catch (error) {
       Swal.fire({
         icon: "error",
