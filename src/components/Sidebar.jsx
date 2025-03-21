@@ -31,7 +31,11 @@ export default function Sidebar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" id="nav-category">
+              <Link
+                className="nav-link"
+                id="nav-category"
+                to="/admin/create-user"
+              >
                 <span className="icon material-symbols-outlined me-2">
                   account_circle
                 </span>
