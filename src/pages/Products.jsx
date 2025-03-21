@@ -123,11 +123,14 @@ function Products() {
                               edit
                             </span>
                           </Link>
-                          <a className="ms-3">
+                          <Link
+                            to={`/admin/update-image/${cuisine.id}`}
+                            className="ms-3"
+                          >
                             <span className="icon material-symbols-outlined text-danger">
                               image
                             </span>
-                          </a>
+                          </Link>
                         </span>
                       </td>
                     </tr>

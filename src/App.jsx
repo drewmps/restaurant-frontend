@@ -10,6 +10,7 @@ import Categories from "./pages/Categories";
 import CreateProduct from "./pages/CreateProduct";
 import UpdateProduct from "./pages/UpdateProduct";
 import AddStaff from "./pages/AddStaff";
+import UpdateImage from "./pages/UpdateImage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="create" element={<CreateProduct />} />
             <Route path="update/:id" element={<UpdateProduct />} />
             <Route path="create-user" element={<AddStaff />} />
+            <Route path="update-image/:id" element={<UpdateImage />} />
           </Route>
         </Routes>
       </BrowserRouter>
