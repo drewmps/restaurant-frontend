@@ -9,6 +9,7 @@ import Products from "./pages/Products";
 import Categories from "./pages/Categories";
 import CreateProduct from "./pages/CreateProduct";
 import UpdateProduct from "./pages/UpdateProduct";
+import AddStaff from "./pages/AddStaff";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="categories" element={<Categories />} />
             <Route path="create" element={<CreateProduct />} />
             <Route path="update/:id" element={<UpdateProduct />} />
+            <Route path="create-user" element={<AddStaff />} />
           </Route>
         </Routes>
       </BrowserRouter>

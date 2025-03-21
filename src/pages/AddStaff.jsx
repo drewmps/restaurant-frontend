@@ -1,6 +1,39 @@
+import { useState } from "react";
 import Button from "../components/Button";
+import axios from "axios";
+import { getBaseURL } from "../helpers/api";
 
 function AddStaff() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+
+  async function handleAddStaff(e) {
+    e.preventDefault();
+    const data = {
+      username,
+      email,
+      password,
+      phoneNumber,
+      address,
+    };
+    try {
+      const response = await axios.post(getBaseURL() + "/apis/add-user", data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+    } catch (error) {
+      console.log("🚀 ~ handleAddStaff ~ error:", error);
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
   return (
     <>
       {/* New User Section */}
@@ -11,7 +44,7 @@ function AddStaff() {
         <div className="row">
           <div className="col-12 col-md-6">
             <div className="pt-3 pb-2 mb-3 border-bottom">
-              <form id="register-form">
+              <form id="register-form" onSubmit={handleAddStaff}>
                 <h1 className="h3 mb-3 display-1">Register Staff</h1>
                 <div className="mb-3">
                   <div className="d-flex justify-content-between">
@@ -25,6 +58,10 @@ function AddStaff() {
                     placeholder="Enter username ..."
                     autoComplete="off"
                     required=""
+                    value={username}
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
                   />
                 </div>
                 <div className="mb-3">
@@ -39,6 +76,10 @@ function AddStaff() {
                     placeholder="Enter email address ..."
                     autoComplete="off"
                     required=""
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                   />
                 </div>
                 <div className="mb-3">
@@ -53,6 +94,10 @@ function AddStaff() {
                     placeholder="Enter password ..."
                     autoComplete="off"
                     required=""
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                 </div>
                 <div className="mb-3">
@@ -63,6 +108,10 @@ function AddStaff() {
                     id="register-phone"
                     placeholder="Enter phone number (optional) ..."
                     autoComplete="off"
+                    value={phoneNumber}
+                    onChange={(e) => {
+                      setPhoneNumber(e.target.value);
+                    }}
                   />
                 </div>
                 <div className="mb-3">
@@ -73,7 +122,10 @@ function AddStaff() {
                     rows={3}
                     placeholder="Enter address (optional) ..."
                     autoComplete="off"
-                    defaultValue={""}
+                    value={address}
+                    onChange={(e) => {
+                      setAddress(e.target.value);
+                    }}
                   />
                 </div>
                 <Button
