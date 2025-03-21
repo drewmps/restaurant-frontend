@@ -16,7 +16,7 @@ function Products() {
           },
         }
       );
-      console.log(response.data.data);
+
       setCuisines(response.data.data);
     } catch (error) {
       Swal.fire({
