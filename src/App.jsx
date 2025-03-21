@@ -7,6 +7,7 @@ import LoginLayout from "./layouts/LoginLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import Products from "./pages/Products";
 import Categories from "./pages/Categories";
+import CreateProduct from "./pages/CreateProduct";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/admin/" element={<AdminLayout />}>
             <Route path="dashboard" element={<Products />} />
             <Route path="categories" element={<Categories />} />
+            <Route path="create" element={<CreateProduct />} />
           </Route>
         </Routes>
       </BrowserRouter>

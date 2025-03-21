@@ -1,9 +1,51 @@
+import { useEffect, useState } from "react";
 import Button from "./Button";
+import axios from "axios";
+import { getBaseURL } from "../helpers/api";
+import { Link } from "react-router";
 
-function FormProduct() {
+function FormProduct({
+  handleSubmit,
+  name,
+  selectedCategory,
+  description,
+  stock,
+  price,
+  imgUrl,
+  setName,
+  setSelectedCategory,
+  setDescription,
+  setStock,
+  setPrice,
+  setImgUrl,
+}) {
+  const [categories, setCategories] = useState([]);
+  async function fetchCategories() {
+    try {
+      const response = await axios.get(
+        getBaseURL() + "/apis/restaurant-app/categories",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+      setCategories(response.data.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
   return (
     <>
-      <form id="product-form">
+      <form id="product-form" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="product-name">
             Name <span className="text-danger fw-bold">*</span>
@@ -15,20 +57,35 @@ function FormProduct() {
             placeholder="Enter product name"
             autoComplete="off"
             required=""
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           />
         </div>
         <div className="mb-3">
           <label htmlFor="product-category">
             Category <span className="text-danger fw-bold">*</span>
           </label>
-          <select id="product-category" className="form-select" required="">
+          <select
+            id="product-category"
+            className="form-select"
+            required=""
+            value={selectedCategory}
+            onChange={(e) => {
+              setSelectedCategory(e.target.value);
+            }}
+          >
             <option value="" selected="" disabled="">
               -- Select Category --
             </option>
-            <option value={1}>Furniture</option>
-            <option value={2}>Workspace</option>
-            <option value={3}>Storage</option>
-            <option value={4}>Textile</option>
+            {categories.map((category) => {
+              return (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className="mb-3">
@@ -43,6 +100,10 @@ function FormProduct() {
             placeholder="Enter product description"
             autoComplete="off"
             required=""
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
           />
         </div>
         <div className="row">
@@ -59,6 +120,10 @@ function FormProduct() {
                 placeholder="Enter product stock"
                 autoComplete="off"
                 required=""
+                value={stock}
+                onChange={(e) => {
+                  setStock(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -75,6 +140,10 @@ function FormProduct() {
                 placeholder="Enter product price"
                 autoComplete="off"
                 required=""
+                value={price}
+                onChange={(e) => {
+                  setPrice(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -87,13 +156,20 @@ function FormProduct() {
             id="product-image"
             placeholder="Enter product image url"
             autoComplete="off"
+            value={imgUrl}
+            onChange={(e) => {
+              setImgUrl(e.target.value);
+            }}
           />
         </div>
         <div className="row mt-5 mb-3">
           <div className="col-6">
-            <Button className="btn btn-lg btn-light rounded-pill w-100 p-2">
+            <Link
+              to="/admin/dashboard"
+              className="btn btn-lg btn-light rounded-pill w-100 p-2"
+            >
               Cancel
-            </Button>
+            </Link>
           </div>
           <div className="col-6">
             <Button
