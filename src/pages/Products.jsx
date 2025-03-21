@@ -26,6 +26,32 @@ function Products() {
       });
     }
   }
+
+  async function deleteCuisine(cuisineId) {
+    try {
+      await axios.delete(
+        getBaseURL() + `/apis/restaurant-app/cuisines/${cuisineId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+
+      setCuisines(
+        cuisines.filter((cuisine) => {
+          return cuisine.id !== cuisineId;
+        })
+      );
+    } catch (error) {
+      console.log("🚀 ~ deleteCuisine ~ error:", error);
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.statusCode,
+        text: error.response.data.error,
+      });
+    }
+  }
   useEffect(() => {
     fetchCuisine();
   }, []);
@@ -79,11 +105,18 @@ function Products() {
                       <td>{cuisine.User.username}</td>
                       <td>
                         <span className="d-flex">
-                          <a href="" className="ms-3">
+                          <div
+                            href=""
+                            className="ms-3"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              deleteCuisine(cuisine.id);
+                            }}
+                          >
                             <span className="icon material-symbols-outlined text-danger">
                               delete
                             </span>
-                          </a>
+                          </div>
                           <Link
                             to={`/admin/update/${cuisine.id}`}
                             className="ms-3"
