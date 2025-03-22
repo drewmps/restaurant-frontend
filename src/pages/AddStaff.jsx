@@ -25,6 +25,15 @@ function AddStaff() {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
+      Swal.fire({
+        icon: "success",
+        text: "User created successfully",
+      });
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      setPhoneNumber("");
+      setAddress("");
     } catch (error) {
       console.log("🚀 ~ handleAddStaff ~ error:", error);
       Swal.fire({
