@@ -45,7 +45,6 @@ function Products() {
         })
       );
     } catch (error) {
-      console.log("🚀 ~ deleteCuisine ~ error:", error);
       Swal.fire({
         icon: "error",
         title: error.response.data.statusCode,

@@ -35,7 +35,6 @@ function AddStaff() {
       setPhoneNumber("");
       setAddress("");
     } catch (error) {
-      console.log("🚀 ~ handleAddStaff ~ error:", error);
       Swal.fire({
         icon: "error",
         title: error.response.data.statusCode,

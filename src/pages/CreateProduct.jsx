@@ -32,7 +32,6 @@ function CreateProduct() {
       );
       navigate("/admin/dashboard");
     } catch (error) {
-      console.log("🚀 ~ handleSubmit ~ error:", error);
       Swal.fire({
         icon: "error",
         title: error.response.data.statusCode,

@@ -28,7 +28,6 @@ export default function UpdateImage() {
       );
       navigate("/admin/dashboard");
     } catch (error) {
-      console.log("🚀 ~ handleSubmit image ~ error:", error);
       Swal.fire({
         icon: "error",
         title: error.response.data.statusCode,

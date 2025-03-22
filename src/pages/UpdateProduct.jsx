@@ -61,7 +61,6 @@ function UpdateProduct() {
       );
       navigate("/admin/dashboard");
     } catch (error) {
-      console.log("🚀 ~ handleSubmit edit product ~ error:", error);
       Swal.fire({
         icon: "error",
         title: error.response.data.statusCode,
