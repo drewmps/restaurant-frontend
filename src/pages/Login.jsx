@@ -3,6 +3,7 @@ import Button from "../components/Button";
 import axios from "axios";
 import { getBaseURL } from "../helpers/api";
 import { useNavigate } from "react-router";
+import logo from "../assets/BOOMER__2_-removebg-preview_1.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -37,11 +38,7 @@ function Login() {
           <div className="col-12 col-lg-8 offset-lg-2 my-5">
             <div className="row">
               <div className="col-12 col-md-6 border-end p-5 text-left">
-                <img
-                  src="https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/561/1056141_PE848273_S4.webp"
-                  width="350px"
-                  alt="sofa"
-                />
+                <img src={logo} width="350px" alt="logo boomer resto" />
               </div>
               <div className="col-12 col-md-6 p-5 text-left">
                 <div className="form-signin m-auto">
