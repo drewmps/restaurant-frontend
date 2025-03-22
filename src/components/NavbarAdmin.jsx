@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Navbar from "./Navbar";
 import logo from "../assets/BOOMER__2_-removebg-preview_1.png";
 
@@ -12,14 +12,14 @@ export default function NavbarAdmin() {
     <>
       {/* Navbar */}
       <Navbar>
-        <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6">
+        <Link to="/" className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6">
           <img
             src={logo}
             height={50}
             className="d-inline-block me-2"
             alt="BURGER"
           />
-        </a>
+        </Link>
         <button
           className="navbar-toggler position-absolute d-md-none collapsed"
           type="button"
