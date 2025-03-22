@@ -5,52 +5,47 @@
  * MIT License
  */
 @font-face {
-  font-family: 'NotoIKEA';
+  font-family: "NotoIKEA";
   src: url(https://www.ikea.co.id/webroot/fonts/NotoIKEALatin/NotoIKEALatin-Regular.woff2)
-      format('woff2'),
+      format("woff2"),
     url(https://www.ikea.co.id/webroot/fonts/NotoIKEALatin/NotoIKEALatin-Regular.woff)
-      format('woff');
+      format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'NotoIKEA';
+  font-family: "NotoIKEA";
   src: url(https://www.ikea.co.id/webroot/fonts/NotoIKEALatin/NotoIKEALatin-Bold.woff2)
-      format('woff2'),
+      format("woff2"),
     url(https://www.ikea.co.id/webroot/fonts/NotoIKEALatin/NotoIKEALatin-Bold.woff)
-      format('woff');
+      format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'NotoIKEA';
+  font-family: "NotoIKEA";
   src: url(https://www.ikea.co.id/webroot/fonts/NotoIKEALatin/NotoIKEALatin-Italic.woff2)
-      format('woff2'),
+      format("woff2"),
     url(https://www.ikea.co.id/webroot/fonts/NotoIKEALatin/NotoIKEALatin-Italic.woff)
-      format('woff');
+      format("woff");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'NotoIKEA';
+  font-family: "NotoIKEA";
   src: url(https://www.ikea.co.id/webroot/fonts/NotoIKEALatin/NotoIKEALatin-BoldItalic.woff2)
-      format('woff2'),
+      format("woff2"),
     url(https://www.ikea.co.id/webroot/fonts/NotoIKEALatin/NotoIKEALatin-BoldItalic.woff)
-      format('woff');
+      format("woff");
   font-weight: bold;
   font-style: italic;
   font-display: swap;
-}
-
-::selection {
-  background: #407ab1;
-  color: #ffce00;
 }
 
 ::placeholder {
@@ -59,8 +54,8 @@
 
 body {
   margin: 0;
-  font-family: 'NotoIKEA', 'Verdana', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "NotoIKEA", "Verdana", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.57;
