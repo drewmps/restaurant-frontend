@@ -104,7 +104,18 @@ function Products() {
                           style={{ objectFit: "cover" }}
                         />
                       </td>
-                      <td>{cuisine.description}</td>
+                      <td>
+                        <div
+                          style={{
+                            height: "160px",
+                            overflow: "hidden",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {cuisine.description}
+                        </div>
+                      </td>
 
                       <td className="fw-bold">{formatRupiah(cuisine.price)}</td>
                       <td>{cuisine.User.username}</td>
