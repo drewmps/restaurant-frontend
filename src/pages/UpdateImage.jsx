@@ -16,7 +16,7 @@ export default function UpdateImage() {
 
     try {
       const response = await axios.patch(
-        getBaseURL() + `/movies/${id}/image_url`,
+        getBaseURL() + `/apis/restaurant-app/cuisines/${id}`,
         formData,
         {
           headers: {
