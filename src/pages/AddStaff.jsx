@@ -55,24 +55,7 @@ function AddStaff() {
             <div className="pt-3 pb-2 mb-3 border-bottom">
               <form id="register-form" onSubmit={handleAddStaff}>
                 <h1 className="h3 mb-3 display-1">Register Staff</h1>
-                <div className="mb-3">
-                  <div className="d-flex justify-content-between">
-                    <label htmlFor="register-username">Username</label>
-                    <label className="text-danger text-end fw-bold">*</label>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="register-username"
-                    placeholder="Enter username ..."
-                    autoComplete="off"
-                    required=""
-                    value={username}
-                    onChange={(e) => {
-                      setUsername(e.target.value);
-                    }}
-                  />
-                </div>
+
                 <div className="mb-3">
                   <div className="d-flex justify-content-between">
                     <label htmlFor="register-email">Email</label>
@@ -106,6 +89,23 @@ function AddStaff() {
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="mb-3">
+                  <div className="d-flex justify-content-between">
+                    <label htmlFor="register-username">Username</label>
+                  </div>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="register-username"
+                    placeholder="Enter username ..."
+                    autoComplete="off"
+                    required=""
+                    value={username}
+                    onChange={(e) => {
+                      setUsername(e.target.value);
                     }}
                   />
                 </div>
