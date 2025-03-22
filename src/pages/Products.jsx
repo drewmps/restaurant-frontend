@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { getBaseURL } from "../helpers/api";
 import { useEffect, useState } from "react";
 import { formatRupiah } from "../helpers/formatRupiah";
+import NoImage from "../assets/no-image.jpg";
 
 function Products() {
   const [cuisines, setCuisines] = useState([]);
@@ -97,7 +98,7 @@ function Products() {
                       <td className="fw-bold">{cuisine.name}</td>
                       <td>
                         <img
-                          src={cuisine.imgUrl}
+                          src={cuisine.imgUrl ? cuisine.imgUrl : NoImage}
                           height={150}
                           width={200}
                           style={{ objectFit: "cover" }}
