@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import Navbar from "./Navbar";
+import logo from "../assets/BOOMER__2_-removebg-preview_1.png";
 
 export default function NavbarPublic({ setIsLoggedIn }) {
   const access_token = localStorage.getItem("access_token");
@@ -15,12 +16,11 @@ export default function NavbarPublic({ setIsLoggedIn }) {
       <Navbar>
         <Link to="/" className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6">
           <img
-            src="./image/burgerLogo.jpg"
+            src={logo}
             height={50}
             className="d-inline-block me-2"
             alt="BURGER"
           />
-          Public Panel
         </Link>
 
         <div>
