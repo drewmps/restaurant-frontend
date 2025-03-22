@@ -39,7 +39,13 @@ function DetailProduct() {
           <div className="col-12 d-flex flex-column flex-md-row gap-2">
             <div>
               <img
-                src={`${cuisine ? cuisine.imgUrl : NoImage}`}
+                src={`${
+                  cuisine
+                    ? cuisine.imgUrl
+                      ? cuisine.imgUrl
+                      : NoImage
+                    : NoImage
+                }`}
                 style={{ width: 250, height: "100%" }}
                 className="d-inline-block me-2"
                 alt=""
