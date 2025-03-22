@@ -68,7 +68,7 @@ export default function Home() {
         id="product-section"
       >
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 className="display-2">Products Public</h1>
+          <h1 className="display-2">Cuisines</h1>
         </div>
         {/* filter search sort */}
         <div className="row mb-5">
