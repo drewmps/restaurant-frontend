@@ -96,7 +96,12 @@ function Products() {
                       <td scope="row">#{index + 1}</td>
                       <td className="fw-bold">{cuisine.name}</td>
                       <td>
-                        <img src={cuisine.imgUrl} className="img-fluid" />
+                        <img
+                          src={cuisine.imgUrl}
+                          height={150}
+                          width={200}
+                          style={{ objectFit: "cover" }}
+                        />
                       </td>
                       <td>{cuisine.description}</td>
 
