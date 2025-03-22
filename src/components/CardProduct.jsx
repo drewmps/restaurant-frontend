@@ -1,12 +1,12 @@
 import { Link } from "react-router";
-
+import NoImage from "../assets/no-image.jpg";
 function CardProduct({ name, to, imgUrl }) {
   return (
     <>
       {/* card product */}
       <div className="card" style={{ width: "14rem" }}>
         <img
-          src={imgUrl}
+          src={imgUrl ? imgUrl : NoImage}
           className="card-img-top"
           alt="..."
           height={200}
