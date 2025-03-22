@@ -94,9 +94,7 @@ export default function Home() {
                   setSelectedCategory(e.target.value);
                 }}
               >
-                <option selected="" value="">
-                  Category
-                </option>
+                <option value="">Category</option>
                 {categories.map((category) => {
                   return (
                     <option key={category.id} value={category.name}>
