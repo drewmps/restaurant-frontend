@@ -4,7 +4,7 @@ function CardProduct({ name, to, imgUrl }) {
   return (
     <>
       {/* card product */}
-      <div className="card" style={{ width: "13rem" }}>
+      <div className="card" style={{ width: "14rem" }}>
         <img
           src={imgUrl}
           className="card-img-top"
