@@ -3,6 +3,7 @@ import { getBaseURL } from "../helpers/api";
 import { useEffect, useState } from "react";
 import { formatRupiah } from "../helpers/formatRupiah";
 import axios from "axios";
+import NoImage from "../assets/no-image.jpg";
 
 function DetailProduct() {
   const { id } = useParams();
@@ -38,7 +39,7 @@ function DetailProduct() {
           <div className="col-12 d-flex flex-column flex-md-row gap-2">
             <div>
               <img
-                src={`${cuisine ? cuisine.imgUrl : ""}`}
+                src={`${cuisine ? cuisine.imgUrl : NoImage}`}
                 style={{ width: 250, height: "100%" }}
                 className="d-inline-block me-2"
                 alt=""
