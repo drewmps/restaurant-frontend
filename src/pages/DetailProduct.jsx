@@ -39,7 +39,7 @@ function DetailProduct() {
             <div>
               <img
                 src={`${cuisine ? cuisine.imgUrl : ""}`}
-                style={{ objectFit: "cover", height: "400px", width: "400px" }}
+                style={{ width: 250, height: "100%" }}
                 className="d-inline-block me-2"
                 alt=""
               />
