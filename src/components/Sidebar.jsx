@@ -39,7 +39,7 @@ export default function Sidebar() {
                 <span className="icon material-symbols-outlined me-2">
                   account_circle
                 </span>
-                Add User
+                Register Staff
               </Link>
             </li>
           </ul>
